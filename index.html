@@ -110,6 +110,34 @@
             chatBox.appendChild(p);
             chatBox.scrollTop = chatBox.scrollHeight; // Scrollni pastga tushirish
         }
+
+
+
+        const WebSocket = require('ws');
+
+// WebSocket serverni ishga tushirish
+const server = new WebSocket.Server({ port: 3000 });
+
+server.on('connection', (socket) => {
+    console.log('A user connected');
+
+    // Foydalanuvchidan xabar olish
+    socket.on('message', (message) => {
+        console.log('Received:', message);
+
+        // Xabarni barcha ulanishlarga yuborish
+        server.clients.forEach((client) => {
+            if (client.readyState === WebSocket.OPEN) {
+                client.send(message);
+            }
+        });
+    });
+
+    // Aloqa uzilganida
+    socket.on('close', () => {
+        console.log('A user disconnected');
+    });
+});
     </script>
 </body>
 </html>
