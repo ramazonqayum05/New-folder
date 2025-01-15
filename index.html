@@ -6,17 +6,18 @@
     <title>Realtime Chat with Firebase</title>
     <style>
         /* Umumiy sahifa dizayni */
+        /* Umumiy sahifa dizayni */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            color: white;
         }
 
         h1 {
             text-align: center;
             padding: 20px;
-            background-color: #4CAF50;
+            background-color: blue;
             color: white;
             margin: 0;
         }
@@ -31,6 +32,7 @@
             width: 90%;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            color: #333;
         }
 
         .message {
@@ -39,21 +41,28 @@
             background-color: #f1f1f1;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         .message strong {
-            color: #4CAF50;
+            color: blue;
         }
 
         /* Xabar yuborish input va tugma */
+        .input-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+
         input[type="text"] {
-            width: 80%;
+            width: 100%;
+            max-width: 80%; /* Max-width 80% */
             padding: 10px;
             font-size: 16px;
-            margin: 20px auto;
-            display: block;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 25px; /* Dumaloq shakl */
+            margin-right: 10px;
             box-sizing: border-box;
         }
 
@@ -61,28 +70,32 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
-            background-color: #4CAF50;
+            background-color: blue;
             color: white;
             border: none;
-            border-radius: 4px;
-            display: block;
-            margin: 0 auto;
+            border-radius: 25px; /* Dumaloq shakl */
+            display: inline-block;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: blue;
+            opacity: 50%;
         }
 
         button:active {
-            background-color: #388e3c;
+            background-color: blue;
+            opacity: 50%;
         }
+
     </style>
 </head>
 <body>
-    <h1>Realtime Chat</h1>
+    <h1>Ramazon Chat</h1>
     <div id="messages"></div>
-    <input type="text" id="message-input" placeholder="Xabar yozing...">
-    <button id="sendButton">Yuborish</button> <!-- Tugmani id orqali tanlash -->
+    <div class="input-container">
+        <input type="text" id="message-input" placeholder="Xabar yozing...">
+        <button id="sendButton">Send</button> <!-- Tugmani id orqali tanlash -->
+    </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
